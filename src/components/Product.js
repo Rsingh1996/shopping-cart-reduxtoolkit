@@ -1,10 +1,12 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-
+import { Card, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import { add } from "../store/cartSlice";
+import { useDispatch } from "react-redux";
 
 const Product = () => {
+  const dispacth = useDispatch();
+
   const [products, setProduct] = useState([]);
   const url = `https://dummyjson.com/products`;
   useEffect(() => {
@@ -14,6 +16,11 @@ const Product = () => {
       .then((result) => setProduct(result.products))
       .catch((e) => console.log(e));
   }, []);
+
+  const addToCart = (product) => {
+    //dispacth an add action
+    dispacth(add(product));
+  };
 
   const Cards = products.map((product) => (
     <div className="col-md-3" style={{ marginBottom: "20px" }}>
@@ -26,7 +33,9 @@ const Product = () => {
         <Card.Body>
           <Card.Title style={{ height: 40 }}>{product.title}</Card.Title>
           <Card.Text>USD : {product.price}</Card.Text>
-          <Button variant="primary">Add to Cart</Button>
+          <Button variant="primary" onClick={() => addToCart(product)}>
+            Add to Cart
+          </Button>
         </Card.Body>
       </Card>
     </div>
