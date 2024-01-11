@@ -13,15 +13,19 @@ export const NavBar = () => {
       <Container fluid>
         <Navbar.Brand href="#">Shopping Cart</Navbar.Brand>
         <Nav>
-          <Nav.Link to="/" as={Link}>
+          <Nav.Link to="/" as={Link} style={{ fontWeight: 500, color: "gray" }}>
             Products
           </Nav.Link>
         </Nav>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-            <Nav.Link to="/cart" as={Link}>
-              My Bag {productLength}
+            <Nav.Link
+              to="/cart"
+              as={Link}
+              style={{ fontWeight: 500, color: "gray" }}
+            >
+              MyBag {productLength}
             </Nav.Link>
           </Navbar.Text>
         </Navbar.Collapse>

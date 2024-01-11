@@ -1,20 +1,17 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { add } from "../store/cartSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../store/productSlice";
 
 const Product = () => {
   const dispacth = useDispatch();
+  const { data: products } = useSelector((state) => state.products);
 
-  const [products, setProduct] = useState([]);
-  const url = `https://dummyjson.com/products`;
   useEffect(() => {
-    // Api call
-    fetch(url)
-      .then((data) => data.json())
-      .then((result) => setProduct(result.products))
-      .catch((e) => console.log(e));
+    // dispacth an action to fetch product
+    dispacth(getProducts());
   }, []);
 
   const addToCart = (product) => {
@@ -23,8 +20,8 @@ const Product = () => {
   };
 
   const Cards = products.map((product) => (
-    <div className="col-md-3" style={{ marginBottom: "20px" }}>
-      <Card key={product.id} style={{ width: "18rem" }}>
+    <div key={product.id} className="col-md-3" style={{ marginBottom: "20px" }}>
+      <Card style={{ width: "18rem" }}>
         <Card.Img
           variant="top"
           src={product.thumbnail}
@@ -43,7 +40,7 @@ const Product = () => {
 
   return (
     <>
-      <h1>Product Dashboard</h1>
+      <h1 style={{ color: "Red", marginBottom: "20px" }}>Product Dashboard</h1>
       <div className="row">{Cards}</div>
     </>
   );
