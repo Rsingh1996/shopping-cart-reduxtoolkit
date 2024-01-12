@@ -9,8 +9,8 @@ export const NavBar = () => {
   const cartProducts = useSelector((state) => state.cart);
   const productLength = cartProducts.length;
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container fluid>
+    <Navbar expand="lg" className="bg-body-tertiary" sticky="top">
+      <Container fluid style={{ backgroundColor: "#E0FFFF" }}>
         <Navbar.Brand href="#">Shopping Cart</Navbar.Brand>
         <Nav>
           <Nav.Link to="/" as={Link} style={{ fontWeight: 500, color: "gray" }}>

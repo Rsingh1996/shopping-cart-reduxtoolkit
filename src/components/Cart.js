@@ -33,7 +33,7 @@ export const Cart = () => {
 
   return (
     <>
-      <h2>Cart</h2>
+      <h1 style={{ color: "Red", marginBottom: "20px" }}>Cart Items</h1>
       <div className="row">{Cards}</div>
     </>
   );
